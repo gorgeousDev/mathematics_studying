@@ -1,5 +1,9 @@
 #ifndef ARITHMETIC_H
 #define ARITHMETIC_H
+#include <map>
+using namespace std;
+
+void printPrimes(map<int, int> primes);
 
 class Arithmetic
 {
@@ -20,7 +24,7 @@ public:
   void primeFactors(int n);
 
   // دالة للقسمة المطولة (عرض خطوات)
-  void longDivision(int dividend, int divisor);
+  pair<int, int> longDivision(int dividend, int divisor);
 };
 
 #endif
