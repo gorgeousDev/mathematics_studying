@@ -121,5 +121,3 @@ pair<int, int> Arithmetic::longDivision(int divided, int divisor)
   // cout << divided << "/" << divisor << ": " << divResult << ", remainder: " << remainder << endl;
   return {divResult, remainder};
 }
-
-
