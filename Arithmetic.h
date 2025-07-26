@@ -25,6 +25,8 @@ public:
 
   // دالة للقسمة المطولة (عرض خطوات)
   pair<int, int> longDivision(int dividend, int divisor);
+
+  void twoEquationSolving();
 };
 
 #endif
