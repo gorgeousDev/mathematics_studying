@@ -53,5 +53,6 @@
     "text_encoding": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp"
-  }
+  },
+  "todo-tree.tree.showBadges": true
 }

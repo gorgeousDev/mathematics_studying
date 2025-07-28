@@ -32,6 +32,16 @@ int Fraction::lcm(int a, int b)
   return result;
 }
 
+Fraction Fraction::negate() const
+{
+  return Fraction(-numerator, denominator);
+}
+
+Fraction Fraction::enverse() const
+{
+  return Fraction(denominator, numerator);
+}
+
 void Fraction::simplify()
 {
 
@@ -62,6 +72,7 @@ void Fraction::print() const
   cout << numerator << '/' << denominator << endl;
 }
 
+//* Operators
 Fraction Fraction::operator+(const Fraction &other) const
 {
 
@@ -69,11 +80,24 @@ Fraction Fraction::operator+(const Fraction &other) const
   int d = denominator * other.denominator;
   return Fraction(n, d);
 }
-
-//TODO: finish operators..
-Fraction Fraction::operator-(const Fraction &other) const
+Fraction Fraction::operator-(Fraction const &other) const
 {
+
+  return *this + other.negate();
 }
-Fraction Fraction::operator*(const Fraction &other) const {}
-Fraction Fraction::operator/(const Fraction &other) const {}
-bool Fraction::operator==(const Fraction &other) const {}
+Fraction Fraction::operator*(const Fraction &other) const
+{
+  return Fraction(numerator * other.numerator, denominator * other.denominator);
+}
+Fraction Fraction::operator/(const Fraction &other) const
+{
+  return *this * other.enverse();
+}
+bool Fraction::operator==(const Fraction &other) const
+{
+  return ((numerator == other.numerator) && (denominator == other.denominator));
+}
+bool Fraction::operator!=(const Fraction &other) const
+{
+  return ((*this == other) == false);
+}

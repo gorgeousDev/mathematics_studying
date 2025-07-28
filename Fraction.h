@@ -13,22 +13,22 @@ public:
 
   ~Fraction();
 
-  //!METHODS
+  //! METHODS
   int gcd(int a, int b);
   void print() const;
-int lcm(int a, int b);
-
+  int lcm(int a, int b);
 
   void simplify();
-
+  Fraction negate() const;
+  Fraction enverse() const;
 
   //! OPERATORS
   Fraction operator+(const Fraction &other) const;
   Fraction operator*(const Fraction &other) const;
-  Fraction operator/(const Fraction &other) const;
-  Fraction operator-(const Fraction &other) const;
+  Fraction operator/(Fraction const &other) const;
+  Fraction operator-(Fraction const &other) const;
   bool operator==(const Fraction &other) const;
-
+  bool operator!=(const Fraction &other) const;
 };
 
 #endif

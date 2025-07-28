@@ -8,14 +8,17 @@ int main(int argc, char const *argv[])
 {
   try
   {
-    Fraction f1(4, -8);
+    Fraction f1(3, 4);
     f1.print();
 
-    Fraction f2(15, 20);
+    Fraction f2(14, 20);
     f2.print();
 
-    Fraction f3 = f1 + f2;
-    f3.print();
+    // (f1 + f2).print();
+    // (f1 - f2).print();
+    // (f1 * f2).print();
+    // (f1 / f2).print();
+    cout << (f1 != f2) << endl;
   }
   catch (const invalid_argument &e)
   {
