@@ -9,18 +9,20 @@ private:
   int denominator;
 
 public:
-  Fraction(int n, int d);
+  Fraction(int n, int d, bool simplifyFlag);
 
   ~Fraction();
 
   //! METHODS
-  int gcd(int a, int b);
+  static int gcd(int a, int b);
   void print() const;
-  int lcm(int a, int b);
+  static int lcm(int a, int b);
 
   void simplify();
   Fraction negate() const;
   Fraction enverse() const;
+
+  static Fraction stdDenomirators(int firstD, int secondD);
 
   //! OPERATORS
   Fraction operator+(const Fraction &other) const;
@@ -29,6 +31,10 @@ public:
   Fraction operator-(Fraction const &other) const;
   bool operator==(const Fraction &other) const;
   bool operator!=(const Fraction &other) const;
+  bool operator<(const Fraction &other) const;
+  bool operator>(const Fraction &other) const;
+  bool operator>=(const Fraction &other) const;
+  bool operator<=(const Fraction &other) const;
 };
 
 #endif

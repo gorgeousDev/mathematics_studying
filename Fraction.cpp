@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Fraction::Fraction(int n, int d)
+Fraction::Fraction(int n, int d, bool simplifyFlag)
 {
   if (d == 0)
   {
@@ -16,7 +16,8 @@ Fraction::Fraction(int n, int d)
   }
   this->numerator = n;
   this->denominator = d;
-  simplify();
+  if (simplifyFlag)
+    simplify();
 }
 
 Fraction::~Fraction()
@@ -34,12 +35,12 @@ int Fraction::lcm(int a, int b)
 
 Fraction Fraction::negate() const
 {
-  return Fraction(-numerator, denominator);
+  return Fraction(-numerator, denominator, false);
 }
 
 Fraction Fraction::enverse() const
 {
-  return Fraction(denominator, numerator);
+  return Fraction(denominator, numerator, false);
 }
 
 void Fraction::simplify()
@@ -72,13 +73,19 @@ void Fraction::print() const
   cout << numerator << '/' << denominator << endl;
 }
 
+Fraction Fraction::stdDenomirators(int firstD, int secondD)
+{
+  int lcmValue = lcm(firstD, secondD);
+  return Fraction(lcmValue, lcmValue, true);
+}
+
 //* Operators
 Fraction Fraction::operator+(const Fraction &other) const
 {
 
   int n = numerator * other.denominator + denominator * other.numerator;
   int d = denominator * other.denominator;
-  return Fraction(n, d);
+  return Fraction(n, d, true);
 }
 Fraction Fraction::operator-(Fraction const &other) const
 {
@@ -87,7 +94,7 @@ Fraction Fraction::operator-(Fraction const &other) const
 }
 Fraction Fraction::operator*(const Fraction &other) const
 {
-  return Fraction(numerator * other.numerator, denominator * other.denominator);
+  return Fraction(numerator * other.numerator, denominator * other.denominator, true);
 }
 Fraction Fraction::operator/(const Fraction &other) const
 {
@@ -99,5 +106,31 @@ bool Fraction::operator==(const Fraction &other) const
 }
 bool Fraction::operator!=(const Fraction &other) const
 {
-  return ((*this == other) == false);
+  return !(*this == other);
+}
+
+bool Fraction::operator<(const Fraction &other) const
+{
+  //? Self before knowing that ad < bc is available;
+  // Fraction stdD = stdDenomirators(denominator, other.denominator);
+  // Fraction first = *this * stdD;
+  // Fraction second = other * stdD;
+  // if (first.numerator < second.numerator)
+  // return true;
+  // return false;
+  return (numerator * other.denominator) < (denominator * other.numerator);
+}
+
+bool Fraction::operator>(const Fraction &other) const
+{
+  return other < *this;
+}
+
+bool Fraction::operator>=(const Fraction &other) const
+{
+  return (*this > other) || (*this == other);
+}
+bool Fraction::operator<=(const Fraction &other) const
+{
+  return (*this < other) || (*this == other);
 }

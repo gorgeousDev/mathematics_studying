@@ -8,17 +8,17 @@ int main(int argc, char const *argv[])
 {
   try
   {
-    Fraction f1(3, 4);
+    Fraction f1(3, 4, true);
     f1.print();
 
-    Fraction f2(14, 20);
+    Fraction f2(12, 20, true);
     f2.print();
 
     // (f1 + f2).print();
     // (f1 - f2).print();
     // (f1 * f2).print();
     // (f1 / f2).print();
-    cout << (f1 != f2) << endl;
+    cout << (f1 > f2) << endl;
   }
   catch (const invalid_argument &e)
   {
