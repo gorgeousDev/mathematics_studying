@@ -1,9 +1,10 @@
 #include "Fraction.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
-Fraction::Fraction(int n, int d, bool simplifyFlag)
+Fraction::Fraction(int n, int d, bool simplifyFlag = true)
 {
   if (d == 0)
   {
@@ -16,6 +17,7 @@ Fraction::Fraction(int n, int d, bool simplifyFlag)
   }
   this->numerator = n;
   this->denominator = d;
+  this->doubleValue = static_cast<double>(n) / d;
   if (simplifyFlag)
     simplify();
 }
@@ -77,6 +79,28 @@ Fraction Fraction::stdDenomirators(int firstD, int secondD)
 {
   int lcmValue = lcm(firstD, secondD);
   return Fraction(lcmValue, lcmValue, true);
+}
+
+double Fraction::getDoubleValue() const
+{
+  return doubleValue;
+}
+
+Fraction Fraction::parse(string &formula)
+{
+  stringstream ss(formula);
+  int n, d;
+  char slash;
+  if (!(ss >> n >> slash >> d) || slash != '/')
+  {
+    throw runtime_error("Invalid fraction format. Use format like 3/4.");
+  }
+  return Fraction(n, d);
+}
+
+string Fraction::to_string()
+{
+  return ::to_string(numerator) + "/" + ::to_string(denominator);
 }
 
 //* Operators
